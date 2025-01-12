@@ -9,11 +9,12 @@ data class LoginForm(
     val email: String,
     val password: String
 )
-
 fun main(args: Array<String>) {
     println("Enter email: ")
 
     val email = readln() ?: ""
+
+    println("222")
 
     println("Enter email: ")
 
@@ -21,6 +22,7 @@ fun main(args: Array<String>) {
 
     if (email == "" || password == "") {
         println("Error")
+        return;
     }
 
     val loginForm = LoginForm(
