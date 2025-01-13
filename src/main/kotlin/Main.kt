@@ -1,8 +1,6 @@
 import api.ApiClient
 import com.google.gson.Gson
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 data class LoginForm(
@@ -13,11 +11,11 @@ data class LoginForm(
 fun main(args: Array<String>) {
     println("Enter email: ")
 
-    val email = readln() ?: ""
+    val email = readLine() ?: ""
 
     println("Enter email: ")
 
-    val password = readln() ?: ""
+    val password = readLine() ?: ""
 
     if (email == "" || password == "") {
         println("Error")
