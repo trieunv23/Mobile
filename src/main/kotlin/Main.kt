@@ -1,30 +1,32 @@
-import api.ApiClient
+import socket.SocketIoClient
+import java.util.Scanner
 import com.google.gson.Gson
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
+import utils.GsonUtils
+import java.util.ArrayList
 
 data class LoginForm(
     val email: String,
     val password: String
 )
+
+data class Message(val socketId: String, val message: String)
+
 fun main(args: Array<String>) {
+    /*
     println("Enter email: ")
 
-    val email = readln() ?: ""
+    val email = readLine() ?: ""
 
     println("222")
 
     println("Enter email: ")
 
-    val password = readln() ?: ""
+    val password = readLine() ?: ""
 
     if (email == "" || password == "") {
         println("Error")
         return;
     }
-
     val loginForm = LoginForm(
         email = email,
         password = password
@@ -44,5 +46,62 @@ fun main(args: Array<String>) {
 
     println(response)
 
+     */
+
+
+    val url = "http://localhost:3000"
+    val client = SocketIoClient()
+
+    client.connect(url)
+
+    startMessaging(client)
+
+    // Thread.sleep(10000)
+
     println("Program arguments: ${args.joinToString()}")
+
+
+    /*
+    val gsonUntil = GsonUtils()
+
+    val message = Message(
+        socketId = "12",
+        message = "Hello"
+    )
+
+    val message2 = Message(
+        socketId = "123",
+        message = "Hello000"
+    )
+
+    val messageList = ArrayList<Message>()
+
+    messageList.add(message)
+    messageList.add(message2)
+
+    val messageJson = gsonUntil.toJson(messageList)
+
+    // val messageListObject = gsonUntil.fromJson(messageJson)
+
+    println(messageJson)
+
+     */
+}
+
+fun startMessaging(client: SocketIoClient) {
+    val scanner = Scanner(System.`in`)
+    val gson = Gson()
+
+
+    while (true) {
+        println("Enter message to send to server (or type 'exit' to quit):")
+        val message = scanner.nextLine()
+        if (message.equals("exit", ignoreCase = true)) {
+            break
+        }
+
+        val jsonMessage = "{socketId:\"$12\",message:\"$message\"}"
+
+        client.sendMessage("new-message-client", jsonMessage)
+    }
 }
