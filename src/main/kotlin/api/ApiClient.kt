@@ -11,7 +11,7 @@ data class ApiResponse(
 )
 
 class ApiClient {
-    fun createOkHttpClient(): OkHttpClient {
+    private fun createOkHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
