@@ -20,7 +20,6 @@ fun main(args: Array<String>) {
     if (email == "" || password == "") {
         println("Error")
     }
-
     val loginForm = LoginForm(
         email = email,
         password = password
