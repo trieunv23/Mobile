@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
      */
 
 
-    val url = "http://localhost:3000"
+    val url = "http://192.168.1.4:3000"
     val client = SocketIoClient()
 
     client.connect(url)
