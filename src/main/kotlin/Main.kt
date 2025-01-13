@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 
     val email = readLine() ?: ""
 
-    println("Enter email: ")
+    println("Enter password: ")
 
     val password = readLine() ?: ""
 
